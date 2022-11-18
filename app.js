@@ -5,7 +5,8 @@ const travels = require('./api/controllers/travelers');
 
 const mongoose=require('mongoose');
 // mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@travels.hkqn1.mongodb.net/<dbname>?retryWrites=true&w=majority`,{
-    mongoose.connect(`mongodb://cos1128:C8EIwVE5y5lnWWEplsJKdeDBcBQuYO1g2bTYdvpgO9wNJFPbvrWrA3JorvXlSx27fsI5rveVfnR29EKjORKMjQ%3D%3D@cos1128.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cos1128@`,{
+    // mongoose.connect(`mongodb://cos1128:C8EIwVE5y5lnWWEplsJKdeDBcBQuYO1g2bTYdvpgO9wNJFPbvrWrA3JorvXlSx27fsI5rveVfnR29EKjORKMjQ%3D%3D@cos1128.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cos1128@`,{
+        mongoose.connect(`mongodb+srv://lskbcd:Xgbfoht82VPc4YpP@cluster0.qtk1zbo.mongodb.net/?retryWrites=true&w=majority`,{
 
 useNewUrlParser:true,
     useUnifiedTopology:true,
@@ -35,29 +36,12 @@ app.use((req,res,next)=>{
     next();
 });
 
-//עכשיו לא צריך אותו app.use((req,res,next)=>{
-//     req.on('data',(chank)=>{
-//         console.log(chank.toString());
-//     });
-//     req.on('end',()=>{
-//         next();
-//     });
-// })
+
 
 //Routes
 app.use('/places',placesRoutes);
 app.use('/travels',travelsRoutes);
-//היה צריך למחוק את 2 הmiddlewares האלה
-// app.get('/',(req,res)=>{
-//     res.status(200).json({
-//         massage:'Hello World 4'
-//     })
-// });
-// app.post('/articles',(req,res)=>{
-//     res.status(200).json({
-//         body:req.body
-//     })
-// })
+
 
 app.use((req,res,next)=>{
     const error=new Error('Not Found');
